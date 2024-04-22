@@ -44,10 +44,34 @@ exports.tableData = async (req, res) => {
         const response = await Assignment.aggregate([
             {
                 $lookup: {
-                    from: "employee", //Collection name (Maybe should have been in plural)
+                    from: "employee", //Collection name (Maybe should have been in plural).
                     localField: "employee_id",
                     foreignField: "employee_id",
                     as: "emp"
+                }
+            },
+            {
+                $unwind: "$emp"
+            },
+            {
+                $lookup: {
+                    from: "project",
+                    localField: "project_code",
+                    foreignField: "project_code",
+                    as: "proj"
+                }
+            },
+            {
+                $unwind: "$proj"
+            },
+            {
+                //Only projecting the relevant data.
+                $project: {
+                    _id: 0,
+                    employee_id: 1,
+                    full_name: "$emp.full_name",
+                    project_name: "$proj.project_name",
+                    start_date: 1
                 }
             }
         ]);
