@@ -8,7 +8,7 @@ function TableBody({tableData}) {
     };
 
     return (
-        <tbody>
+        <tbody id="table_body">
             {tableData.map((item, index) => (
                 <tr key={index}>
                     <td style={tdStyle}>{item.employee_id}</td>

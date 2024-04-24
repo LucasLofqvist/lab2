@@ -39,7 +39,7 @@ function App() {
     console.log("Rendering data!");
     return (
         <table style={{borderCollapse: "collapse"}}>
-            <TableHead />
+            <TableHead tableData={data} updateData={setData}/>
             <TableBody tableData={data} />
         </table>
     );
