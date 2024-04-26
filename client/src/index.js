@@ -40,7 +40,7 @@ function App() {
     return (
         <table style={{borderCollapse: "collapse"}}>
             <TableHead tableData={data} updateData={setData}/>
-            <TableBody tableData={data} />
+            <TableBody tableData={data.slice(-5)} />
         </table>
     );
 }
