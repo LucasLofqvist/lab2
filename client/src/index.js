@@ -17,7 +17,7 @@ function App() {
         const fetchData = () => {
             fetch("http://localhost:3000/api/project_assignments")
             .then(res => res.json())
-            .then(data => setData(data.response))
+            .then(data => setData(data.response.slice(-5)))
             .catch(error => console.error(error.message));
         };
 
@@ -40,7 +40,7 @@ function App() {
     return (
         <table style={{borderCollapse: "collapse"}}>
             <TableHead tableData={data} updateData={setData}/>
-            <TableBody tableData={data.slice(-5)} />
+            <TableBody tableData={data} />
         </table>
     );
 }
